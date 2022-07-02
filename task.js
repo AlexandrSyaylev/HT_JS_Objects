@@ -16,16 +16,18 @@ Student.prototype.addMark = function (mark) {
   }
 }
 
-Student.prototype.addMarks = function (...mark) {
-  this.addMark(mark);
+Student.prototype.addMarks = function (...marks) {
+  for (let mark of marks) {
+    this.addMark(mark);
+  }
 }
 
 Student.prototype.getAverage = function (subjectName) {
-  return (Student.marks.reduce((acc,it) => {return acc+it, 0})/Student.marks.lenght);
+  return (this.marks.reduce((acc,it) => {return acc+it}, 0) /this.marks.length);
 }
 
 Student.prototype.exclude = function (reason) {
-  delete Student.subject;
-  delete Student.marks;
+  delete this.subject;
+  delete this.marks;
   this.excluded = reason;
 }
